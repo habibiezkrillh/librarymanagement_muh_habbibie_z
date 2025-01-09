@@ -12,6 +12,10 @@ class Collection extends Model
     protected $fillable = ['title', 'type', 'is_physical'];
 
     // Relationship
+    public function librarian()
+    {
+        return $this->belongsTo(Librarian::class);
+    }
     public function accessRequests()
     {
         return $this->hasMany(AccessRequest::class);

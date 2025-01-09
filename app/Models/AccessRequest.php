@@ -16,4 +16,12 @@ class AccessRequest extends Model
     {
         return $this->belongsTo(Collection::class);
     }
+    public function librarian()
+    {
+        return $this->belongsTo(Librarian::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

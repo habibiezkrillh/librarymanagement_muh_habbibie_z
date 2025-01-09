@@ -11,11 +11,13 @@ return new class extends Migration
         Schema::create('access_requests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('collection_id');
-            $table->unsignedBigInteger('user_id'); // Assuming student/user ID's
-            $table->string('status')->default('pending');
-            $table->timestamps();
-
+            $table->unsignedBigInteger('librarian_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable(); // Assuming student/user ID's
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->foreign('collection_id')->references('id')->on('collections')->onDelete('cascade');
+            $table->foreign('librarian_id')->references('id')->on('librarians')->onDelete('set null');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

@@ -13,6 +13,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('type'); // Book, Journal, Newspaper, CD, etc.
             $table->boolean('is_physical')->default(true);
+            $table->unsignedBigInteger('librarian_id')->nullable();
+            $table->foreign('librarian_id')->references('id')->on('librarians')->onDelete('set null');
             $table->timestamps();
         });
     }

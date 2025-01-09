@@ -10,4 +10,10 @@ class Admin extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'email', 'password'];
+
+    // Relationship
+    public function librarians()
+    {
+        return $this->hasMany(Librarian::class);
+    }
 }
